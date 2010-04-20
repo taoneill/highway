@@ -1,5 +1,7 @@
 package net.apptao.highway.server;
 
-public interface HwyDao {
+import com.googlecode.objectify.Objectify;
 
+public interface HwyDao extends Objectify {
+	
 }

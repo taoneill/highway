@@ -23,7 +23,7 @@ public class ObjectifyService
 	public static ObjectifyFactory factory() { return factory; }
 
 	//
-	// All static methods simply pass-through to the singleton factory
+	// All static methods simply pass-through to the singleton fctory
 	//
 
 	/** @see ObjectifyFactory#begin() */

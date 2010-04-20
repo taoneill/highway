@@ -12,5 +12,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/dev/highway/lib/gwt-dispatch-1.0.0-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/dev/highway/lib/objectify-2.1/objectify-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
