@@ -2,16 +2,16 @@ package net.apptao.highway.client;
 
 import java.util.Map;
 
-import net.apptao.highway.client.dispatch.HwyCommand;
-import net.apptao.highway.client.dispatch.HwyDelete;
-import net.apptao.highway.client.dispatch.HwyDeleteResult;
-import net.apptao.highway.client.dispatch.HwyDispatchAsync;
-import net.apptao.highway.client.dispatch.HwyGet;
-import net.apptao.highway.client.dispatch.HwyGetResult;
-import net.apptao.highway.client.dispatch.HwyPut;
-import net.apptao.highway.client.dispatch.HwyPutResult;
-import net.apptao.highway.client.dispatch.HwyResult;
 import net.apptao.highway.client.event.HwyEventBus;
+import net.apptao.highway.shared.dispatch.HwyCommand;
+import net.apptao.highway.shared.dispatch.HwyDelete;
+import net.apptao.highway.shared.dispatch.HwyDeleteResult;
+import net.apptao.highway.shared.dispatch.HwyDispatchAsync;
+import net.apptao.highway.shared.dispatch.HwyGet;
+import net.apptao.highway.shared.dispatch.HwyGetResult;
+import net.apptao.highway.shared.dispatch.HwyPut;
+import net.apptao.highway.shared.dispatch.HwyPutResult;
+import net.apptao.highway.shared.dispatch.HwyResult;
 
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;

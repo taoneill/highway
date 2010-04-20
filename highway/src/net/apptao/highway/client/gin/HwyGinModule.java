@@ -2,9 +2,9 @@ package net.apptao.highway.client.gin;
 
 import net.apptao.highway.client.Highway;
 import net.apptao.highway.client.dispatch.DefaultHwyDispatchAsync;
-import net.apptao.highway.client.dispatch.HwyDispatchAsync;
 import net.apptao.highway.client.event.DefaultHwyEventBus;
 import net.apptao.highway.client.event.HwyEventBus;
+import net.apptao.highway.shared.dispatch.HwyDispatchAsync;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 import net.customware.gwt.dispatch.client.standard.StandardDispatchAsync;
 

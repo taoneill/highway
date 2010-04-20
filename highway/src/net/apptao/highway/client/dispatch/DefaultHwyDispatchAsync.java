@@ -1,5 +1,8 @@
 package net.apptao.highway.client.dispatch;
 
+import net.apptao.highway.shared.dispatch.HwyCommand;
+import net.apptao.highway.shared.dispatch.HwyDispatchAsync;
+import net.apptao.highway.shared.dispatch.HwyResult;
 import net.customware.gwt.dispatch.client.DispatchAsync;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
