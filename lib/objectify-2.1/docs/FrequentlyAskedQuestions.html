@@ -1,0 +1,43 @@
+
+ 
+
+
+<html>
+ <head>
+ <title>FrequentlyAskedQuestions</title>
+ </head>
+ <body>
+
+
+
+
+ <div id="wikicontent">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+ 
+ <td class="vt" id="wikimaincol" width="100%">
+ 
+ <div id="wikiheader" style="margin-bottom:1em">
+ 
+ <span style="font-size:120%;font-weight:bold">FrequentlyAskedQuestions</span>
+ &nbsp;
+ 
+ 
+ <div style="font-style:italic; margin-top: 3px">Frequently Asked Questions</div>
+ 
+ </div>
+ <p><ul><li><a href="#Frequently_Asked_Questions">Frequently Asked Questions</a></li><ul><li><a href="#Can_I_use_Dependency_Injection_(Spring,_Guice,_Weld)_with_Object">Can I use Dependency Injection (Spring, Guice, Weld) with Objectify?</a></li><li><a href="#How_do_I_shut_off_the_datanucleus_byte_code_enhancer?">How do I shut off the datanucleus byte code enhancer?</a></li><li><a href="#Can_I_change_data_after_it_is_loaded_or_before_it_is_stored?">Can I change data after it is loaded or before it is stored?</a></li><li><a href="#Should_I_Use_a_String_(Name)_Id?">Should I Use a String (Name) Id?</a></li><li><a href="#How_can_I_integrate_with_memcached?">How can I integrate with memcached?</a></li><li><a href="#How_do_I_migrate_from_JDO_to_Objectify?">How do I migrate from JDO to Objectify?</a></li></ul></ul> </p><h1><a name="Frequently_Asked_Questions"/>Frequently Asked Questions</h1><h2><a name="Can_I_use_Dependency_Injection_(Spring,_Guice,_Weld)_with_Object"/>Can I use Dependency Injection (Spring, Guice, Weld) with Objectify?</h2><p>Yes!  Objectify was designed with this in mind. <ol><li>Ignore the <tt>ObjectifyService</tt> class and its static methods.  It is merely a static proxy for a single instance of <tt>ObjectifyFactory</tt>.  Instead you will use <tt>ObjectifyFactory</tt> directly. </li><li>Create an application-scoped <tt>ObjectifyFactory</tt> instance, register your classes, and inject it! </li><li>Alternatively, use the DAO pattern (see <a href="BestPractices.html">BestPractices</a>) and inject your DAO. </li></ol></p><h2><a name="How_do_I_shut_off_the_datanucleus_byte_code_enhancer?"/>How do I shut off the datanucleus byte code enhancer?</h2><ul><li>In Eclipse, go to the Project Properties -&gt; Builders and disable the Enhancer. </li></ul><h2><a name="Can_I_change_data_after_it_is_loaded_or_before_it_is_stored?"/>Can I change data after it is loaded or before it is stored?</h2><p>Absolutely: <ul><li>See the <a href="http://code.google.comIntroductionToObjectify.html#Lifecycle_Callbacks" rel="nofollow">Lifecycle Callbacks</a> </li></ul></p><h2><a name="Should_I_Use_a_String_(Name)_Id?"/>Should I Use a String (Name) Id?</h2><p>If it is a natural key, sure; Objectify allows this no problem. Here is a little more of a discussion <a href="http://groups.google.com/group/google-appengine-java/browse_thread/thread/998289f853f5a688/c50446d98eb90017?#c50446d98eb90017" rel="nofollow">about it.</a> </p><h2><a name="How_can_I_integrate_with_memcached?"/>How can I integrate with memcached?</h2><ul><li>See the <a href="http://code.google.comIntroductionToObjectify.html#Caching" rel="nofollow">Caching</a> documentation. Hint, add @Cached to your (entity) class. </li></ul><h2><a name="How_do_I_migrate_from_JDO_to_Objectify?"/>How do I migrate from JDO to Objectify?</h2><p>You should have no trouble using Objectify side-by-side with JDO. Just don&#x27;t use the javax.persistence.Entity annotation on Objectify entities, it will likely make the JDO bytecode enhancer try to enhance it. Don&#x27;t use an annotation if you don&#x27;t need to name your entity something different than the classname. </p><p>For the most part, migrating JDO classes to Objectify classes should be pretty straightforward.  The only trick will be mapping the relationships.  Look at the raw Entity objects to see what structure JDO created - relationships are just a Key on one end or both.  If you make this field a Key&lt;?&gt; (or Collection&lt;Key&lt;?&gt;&gt;) in your Objectify entities, it will map just fine. </p>
+ </td> 
+ </tr>
+ </table>
+ </div>
+
+
+
+ <script src="http://www.gstatic.com/codesite/ph/17891623693695439908/js/dwiki_scripts_20081003.js"></script>
+
+
+
+ </body>
+</html>
+

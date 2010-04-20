@@ -1,0 +1,43 @@
+
+ 
+
+
+<html>
+ <head>
+ <title>ReleaseNotes</title>
+ </head>
+ <body>
+
+
+
+
+ <div id="wikicontent">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr>
+ 
+ <td class="vt" id="wikimaincol" width="100%">
+ 
+ <div id="wikiheader" style="margin-bottom:1em">
+ 
+ <span style="font-size:120%;font-weight:bold">ReleaseNotes</span>
+ &nbsp;
+ 
+ 
+ <div style="font-style:italic; margin-top: 3px">Objectify-Appengine Release Notes</div>
+ 
+ </div>
+ <h1><a name="2.1"/>2.1</h1><p>2010-03-25 <ul><li>Requires Appengine SDK 1.3.1 or newer </li></ul></p><ul><li>Changed return type of <tt>Objectify.get(Class&lt;? extends T&gt; clazz, Iterable&lt;S&gt; idsOrNames)</tt> to <tt>Map&lt;S, T&gt;</tt> rather than <tt>Map&lt;Key&lt;T&gt;, T&gt;</tt> </li><li>Added support for partial index conditions to @Indexed and @Unindexed </li><li>Added @NotSaved (with conditions) </li><li>Added @AlsoLoad as replacement for @OldName </li><li>Deprecated @OldName </li><li>Added <tt>Objectify.getFactory()</tt> method </li><li>Added wrapper helper classes for Objectify, Query, and QueryResultIterator </li></ul><h1><a name="2.0.2"/>2.0.2</h1><p>2010-02-25 <ul><li>Requires Appengine SDK 1.3.1 or newer </li></ul></p><ul><li>Added @Unindexed and @Indexed class and field support </li><li>Fixed bugs in query Cursor and limit() support. </li></ul><h1><a name="2.0.1"/>2.0.1</h1><p>2010-02-18 <ul><li>Requires Appengine SDK 1.3.1 or newer </li></ul></p><ul><li>Added Cursor support </li><li>Added @PostLoad and @PrePersist callbacks </li></ul><h1><a name="2.0"/>2.0</h1><p>2010-02-10 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>See 2.0rc1 and 2.0b1 release notes for significant changes since 1.0.3. </li><li>Changed ObjectifyFactory.createKey() to slightly-different ObjectifyFactory.getKey() and removed createKey() from ObjectifyService. </li></ul><h1><a name="2.0_rc_1"/>2.0 rc 1</h1><p>2010-02-09 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Adds memcache integration (write-through, transaction safe, negative caching, custom class expiration) with a @Cached annotation. </li></ul><h1><a name="2.0_beta_1"/>2.0 beta 1</h1><p>2010-02-07 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Completely new Query API. </li><li>OKey&lt;?&gt; has been renamed to Key&lt;?&gt; </li><li>Added @Embedded classes, collections, and arrays </li><li>Added GWT versions of all basic datastore types (Email, Link, GeoPt, etc) </li><li>Fields using the <tt>transient</tt> keyword <strong>will</strong> now be persisted. The <tt>@Transient</tt> annotation is now the only way to tell Objectify to ignore a field. </li><li>New architecture and many more unit tests! </li></ul><h1><a name="1.0.3"/>1.0.3</h1><p>2010-01-29 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Fixed a bug in batch delete. </li></ul><h1><a name="1.0.2"/>1.0.2</h1><p>2010-01-26 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Entity superclasses now processed correctly. </li><li>OKey now serializes properly in GWT. </li><li>Fixed classloader exception when using FetchOptions with datastore retries. </li><li>Better error msg if entity missing no-args constructor. </li></ul><h1><a name="1.0.1"/>1.0.1</h1><p>2010-01-22 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Added support for Enum types </li><li>Fixed OPreparedQuery.asSingle() when resultset was empty </li><li>Added full support for the common collection types </li></ul><h1><a name="1.0"/>1.0</h1><p>2010-01-13 <ul><li>Requires Appengine SDK 1.3.0 or newer </li></ul></p><ul><li>Initial release.  </li></ul>
+ </td> 
+ </tr>
+ </table>
+ </div>
+
+
+
+ <script src="http://www.gstatic.com/codesite/ph/17891623693695439908/js/dwiki_scripts_20081003.js"></script>
+
+
+
+ </body>
+</html>
+
