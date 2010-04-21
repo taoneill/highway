@@ -10,21 +10,17 @@ public class HwyPutHandler implements HwyHandler<HwyPut, HwyPutResult>{
 	@Override
 	public HwyPutResult execute(HwyPut action, ExecutionContext context)
 			throws ActionException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Class<HwyPut> getActionType() {
-		// TODO Auto-generated method stub
-		return null;
+		return HwyPut.class;
 	}
 
 	@Override
 	public void rollback(HwyPut action, HwyPutResult result,
 			ExecutionContext context) throws ActionException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

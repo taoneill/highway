@@ -1,10 +1,10 @@
 package net.apptao.highway.client;
 
+import net.apptao.highway.client.dispatch.HwyDispatchAsync;
 import net.apptao.highway.client.event.HwyEventBus;
 import net.apptao.highway.shared.dispatch.HwyCommand;
 import net.apptao.highway.shared.dispatch.HwyDelete;
 import net.apptao.highway.shared.dispatch.HwyDeleteResult;
-import net.apptao.highway.shared.dispatch.HwyDispatchAsync;
 import net.apptao.highway.shared.dispatch.HwyGet;
 import net.apptao.highway.shared.dispatch.HwyGetResult;
 import net.apptao.highway.shared.dispatch.HwyPut;
