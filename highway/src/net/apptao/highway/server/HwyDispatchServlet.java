@@ -1,5 +1,6 @@
 package net.apptao.highway.server;
 
+import net.apptao.highway.server.dispatch.HwyCommandRightsValidator;
 import net.customware.gwt.dispatch.client.secure.SecureDispatchService;
 import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.server.secure.SecureSessionValidator;

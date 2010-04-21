@@ -2,10 +2,11 @@ package net.apptao.highway.server.guice;
 
 import net.apptao.highway.server.Highway;
 import net.apptao.highway.server.HighwayServerImpl;
-import net.apptao.highway.server.HwyCommandRightsValidator;
-import net.apptao.highway.server.HwyCommandRightsValidatorImpl;
-import net.apptao.highway.server.HwyDaoService;
 import net.apptao.highway.server.HwyDispatchServlet;
+import net.apptao.highway.server.dao.HwyDaoService;
+import net.apptao.highway.server.dao.HwyDaoServiceImpl;
+import net.apptao.highway.server.dispatch.HwyCommandRightsValidator;
+import net.apptao.highway.server.dispatch.HwyCommandRightsValidatorImpl;
 import net.customware.gwt.dispatch.server.appengine.AppEngineSecureSessionValidator;
 import net.customware.gwt.dispatch.server.guice.GuiceDispatch;
 import net.customware.gwt.dispatch.server.guice.GuiceLazyActionHandlerRegistry;

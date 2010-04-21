@@ -1,5 +1,7 @@
 package net.apptao.highway.server;
 
+import net.apptao.highway.server.dao.HwyDao;
+import net.apptao.highway.server.dao.HwyDaoService;
 import net.customware.gwt.dispatch.server.Dispatch;
 
 import com.google.inject.Inject;

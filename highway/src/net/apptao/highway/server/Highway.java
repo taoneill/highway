@@ -1,5 +1,7 @@
 package net.apptao.highway.server;
 
+import net.apptao.highway.server.dao.HwyDao;
+
 public interface Highway {
 
 	public abstract HwyDao dao();
