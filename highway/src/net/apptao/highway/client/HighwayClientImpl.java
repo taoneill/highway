@@ -23,27 +23,15 @@ public class HighwayClientImpl implements Highway{
 	private HwyEventBus eventBus;
 
 	@Inject
-	public HighwayClientImpl(HwyDispatchAsync dispatch, HwyEventBus eventBus, HwyClientCache cache){	//, HwyClientDao) :/
+	public HighwayClientImpl(HwyDispatchAsync dispatch, HwyEventBus eventBus){
 		this.dispatch = dispatch;
 		this.eventBus = eventBus;
 	}
-
-	// Command
 
 	public void call(HwyCommand<HwyResult> command, AsyncCallback<HwyResult> callback) {
 		dispatch.call(command, callback);
 	}
 	
-//	public void batch(HwyBatchFailBehavior behavior, Map<HwyCommand<HwyResult>, AsyncCallback<HwyResult>> commands, ){
-//		// send as a single request (let fail or rollback whole batch)
-//	}
-//	
-//	public void queue(Map<HwyCommand<HwyResult>, AsyncCallback<HwyResult>> commands, HwyQueueFailBehavior behavior){
-//		// wait until each request comes back before sending the next (keep going on fail or stop queue)
-//	}
-//	
-	// Data (Local-Remote Storage agnostic)
-
 	public void get(Class<?> dataType, Long dataId, AsyncCallback<HwyGetResult> callback) {
 		dispatch.call(new HwyGet(dataType, dataId), callback);
 	}
@@ -80,7 +68,4 @@ public class HighwayClientImpl implements Highway{
 	public <H extends EventHandler> HandlerRegistration handle(GwtEvent.Type<H> type, final H handler) {
 		return eventBus.addHandler(type, handler);
 	}
-		
-	// Binding
-	//public void bind(HwyData data, HwyBinder binder, Object value);
 }

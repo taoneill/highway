@@ -2,6 +2,8 @@ package net.apptao.highway.client.gin;
 
 import net.apptao.highway.client.Highway;
 import net.apptao.highway.client.HighwayClientImpl;
+import net.apptao.highway.client.HwyClientCache;
+import net.apptao.highway.client.HwyClientCacheImpl;
 import net.apptao.highway.client.dispatch.HwyDispatchAsync;
 import net.apptao.highway.client.dispatch.HwyDispatchAsyncImpl;
 import net.apptao.highway.client.dispatch.RichDispatchAsync;
@@ -19,6 +21,7 @@ public class HwyGinModule extends AbstractGinModule {
 		bind(HwyEventBus.class).to(HwyEventBusImpl.class);
 		bind(DispatchAsync.class).to(RichDispatchAsync.class);
 		bind(HwyDispatchAsync.class).to(HwyDispatchAsyncImpl.class);
+		bind(HwyClientCache.class).to(HwyClientCacheImpl.class);
 	}
 
 }

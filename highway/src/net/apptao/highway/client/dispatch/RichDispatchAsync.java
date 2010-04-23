@@ -1,5 +1,8 @@
 package net.apptao.highway.client.dispatch;
 
+import net.apptao.highway.client.HwyClientCache;
+import net.apptao.highway.shared.dispatch.HwyCommand;
+import net.apptao.highway.shared.dispatch.HwyResult;
 import net.customware.gwt.dispatch.client.AbstractDispatchAsync;
 import net.customware.gwt.dispatch.client.ExceptionHandler;
 import net.customware.gwt.dispatch.client.secure.SecureDispatchService;
@@ -20,31 +23,53 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 
 
     private final SecureSessionAccessor secureSessionAccessor;
+	private HwyClientCache cache;
 
-	public RichDispatchAsync(ExceptionHandler exceptionHandler, SecureSessionAccessor secureSessionAccessor) {
+	public RichDispatchAsync(ExceptionHandler exceptionHandler, 
+			SecureSessionAccessor secureSessionAccessor, HwyClientCache cache) {
 		super(exceptionHandler);
 		this.secureSessionAccessor = secureSessionAccessor;
+		this.cache = cache;
 	}
 	
-    public <A extends Action<R>, R extends Result> void execute( final A action, final AsyncCallback<R> callback ) {
-    	// Append action class name as extra path info
-        String className = action.getClass().getName();
-        int namePos = className.lastIndexOf(".") + 1;
-        className = className.substring(namePos);
-        ((ServiceDefTarget)realService).setServiceEntryPoint(baseUrl + className);
-        
-        String sessionId = secureSessionAccessor.getSessionId();
-
-        realService.execute( sessionId, action, new AsyncCallback<Result>() {
-            public void onFailure( Throwable caught ) {
-            	RichDispatchAsync.this.onFailure( action, caught, callback );
-            }
-
-            @SuppressWarnings({"unchecked"})
-            public void onSuccess( Result result ) {
-            	RichDispatchAsync.this.onSuccess( action, (R) result, callback );
-            }
-        } );
+    public <A extends Action<R>, R extends Result> void execute( final A action, 
+    		final AsyncCallback<R> callback ) {
+    	final boolean isCachedCommand = action instanceof HwyCommand<?> 
+    		&& action.getClass().getAnnotation(CachedCommand.class) != null; 
+    	if(isCachedCommand){
+			HwyResult result = cache.get((HwyCommand<HwyResult>)action);
+			if(result != null){
+				// command cache hit! return immediately 
+				RichDispatchAsync.this.onSuccess(action, (R) result, callback);
+			}
+		} else {
+			// normal call
+    	
+	    	// Append action class name as extra path info
+	        String className = action.getClass().getName();
+	        int namePos = className.lastIndexOf(".") + 1;
+	        className = className.substring(namePos);
+	        ((ServiceDefTarget)realService).setServiceEntryPoint(baseUrl + className);
+	        
+	        String sessionId = secureSessionAccessor.getSessionId();
+	
+	        realService.execute( sessionId, action, new AsyncCallback<Result>() {
+	            public void onFailure( Throwable caught ) {
+	            	RichDispatchAsync.this.onFailure( action, caught, callback );
+	            }
+	
+	            @SuppressWarnings({"unchecked"})
+	            public void onSuccess( Result result ) {
+	            	// cache the result if need be
+	            	if(isCachedCommand){
+	            		cache.put((HwyCommand<HwyResult>)action, (HwyResult) result, 
+	            				action.getClass().getAnnotation(CachedCommand.class).secondsUntilExpire());
+	            	}
+	            	RichDispatchAsync.this.onSuccess( action, (R) result, callback );
+	            	
+	            }
+	        } );
+		}
     }
 
     protected <A extends Action<R>, R extends Result> void onFailure( A action, Throwable caught, final AsyncCallback<R> callback ) {
