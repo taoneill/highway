@@ -1,5 +1,8 @@
 package net.apptao.highway.server.dispatch;
 
-public @interface Unsecured {
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Unsecured {
 }
