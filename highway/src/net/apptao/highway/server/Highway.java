@@ -1,6 +1,6 @@
 package net.apptao.highway.server;
 
-import net.apptao.highway.server.dao.HwyDao;
+import com.googlecode.objectify.Objectify;
 
 public interface Highway {
 
@@ -8,13 +8,13 @@ public interface Highway {
 	 * Begin and new non-transactional data access operation.
 	 * @return A new instance of a non-transactional @see HwyDao, which directly extends @see Objectify.
 	 */
-	public abstract HwyDao dao();
+	public abstract Objectify dao();
 
 	/**
 	 * Begin and new transactional data access operation. 
 	 * @return A new instance of a transactional @see HwyDao, which directly extends @see Objectify.
 	 */
-	public abstract HwyDao dao(boolean transactional);
+	public abstract Objectify dao(boolean transactional);
 
 	/**
 	 * Register a class for persistence.

@@ -3,8 +3,6 @@ package net.apptao.highway.server.guice;
 import net.apptao.highway.server.Highway;
 import net.apptao.highway.server.HighwayServerImpl;
 import net.apptao.highway.server.HwyDispatchServlet;
-import net.apptao.highway.server.dao.HwyDaoService;
-import net.apptao.highway.server.dao.HwyDaoServiceImpl;
 import net.apptao.highway.server.dispatch.HwyCommandRightsValidator;
 import net.apptao.highway.server.dispatch.HwyCommandRightsValidatorImpl;
 import net.customware.gwt.dispatch.server.appengine.AppEngineSecureSessionValidator;
@@ -25,7 +23,6 @@ public class HighwayServletModule extends ServletModule {
     	bind(HwyCommandRightsValidator.class).to(HwyCommandRightsValidatorImpl.class);    	
     	serve("/*").with(HwyDispatchServlet.class);
     	bind(ObjectifyFactory.class).in(Singleton.class);
-    	bind(HwyDaoService.class).to(HwyDaoServiceImpl.class).in(Singleton.class);
     	bind(Highway.class).to(HighwayServerImpl.class);
     }
 }

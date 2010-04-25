@@ -22,6 +22,6 @@ public abstract class HighwayModule extends ActionHandlerModule {
 	protected void configureHandlers() {
 		configureModule();
 	}
-	
+
 	protected abstract void configureModule();
 }

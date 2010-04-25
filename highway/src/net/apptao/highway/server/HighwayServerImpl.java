@@ -1,34 +1,30 @@
 package net.apptao.highway.server;
 
-import net.apptao.highway.server.dao.HwyDao;
-import net.apptao.highway.server.dao.HwyDaoService;
-import net.customware.gwt.dispatch.server.Dispatch;
-
 import com.google.inject.Inject;
+import com.googlecode.objectify.Objectify;
+import com.googlecode.objectify.ObjectifyService;
 
 public class HighwayServerImpl implements Highway {
-	private HwyDaoService daoService;
 	
 	@Inject
-	public HighwayServerImpl(Dispatch dispatch, HwyDaoService daoService){
-		this.daoService = daoService;
+	public HighwayServerImpl(){
 	}
 	
-	public HwyDao dao()
+	public Objectify dao()
 	{
-		return daoService.begin();
+		return ObjectifyService.begin();
 	}
 	
-	public HwyDao dao(boolean transactional)
+	public Objectify dao(boolean transactional)
 	{
 		if(transactional)
-			return daoService.beginTransaction();
+			return ObjectifyService.beginTransaction();
 		else
 			return dao();
 	}
 	
 	public void register(Class<?> persisted)
 	{
-		daoService.register(persisted);
+		ObjectifyService.register(persisted);
 	}
 }
