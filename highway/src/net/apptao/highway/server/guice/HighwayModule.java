@@ -17,4 +17,11 @@ public abstract class HighwayModule extends ActionHandlerModule {
 	protected void register(Class<?> modelClass){
 		ObjectifyService.register(modelClass);
 	}
+	
+	@Override
+	protected void configureHandlers() {
+		configureModule();
+	}
+	
+	protected abstract void configureModule();
 }

@@ -5,7 +5,7 @@ import net.apptao.highway.shared.dispatch.HwyPut;
 
 public class HwyCrudModule extends HighwayModule {
 	@Override
-	protected void configureHandlers() {
+	protected void configureModule() {
 		bindCommand(HwyPut.class, HwyPutHandler.class);
 	}
 }

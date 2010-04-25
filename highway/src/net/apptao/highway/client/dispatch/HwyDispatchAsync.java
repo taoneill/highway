@@ -9,7 +9,7 @@ public interface HwyDispatchAsync {
 	 <C extends HwyCommand<R>, R extends HwyResult> void call(C command, AsyncCallback<R> callback);
 
 		// crazy ideas
-	 // maybe the Maps could be replaced with (or alternative to a) a cool syntax e.g. 
+	 // maybe the Maps (below) could be replaced with (or alternative to a) a cool syntax e.g. 
 	 //hwy.call().batch(new HwyCommand(), new AsyncCallback({
 	 //										.. lalala
 //										}

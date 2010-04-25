@@ -6,7 +6,9 @@ import net.customware.gwt.dispatch.server.Dispatch;
 import net.customware.gwt.dispatch.server.secure.SecureSessionValidator;
 
 import com.google.inject.Inject;
+import com.google.inject.Singleton;
 
+@Singleton
 public class HwyDispatchServlet extends HwyAbstractDispatchServlet implements SecureDispatchService {
 
 	private final Dispatch dispatch;
