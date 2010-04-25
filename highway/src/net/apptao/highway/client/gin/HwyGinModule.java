@@ -9,7 +9,12 @@ import net.apptao.highway.client.dispatch.HwyDispatchAsyncImpl;
 import net.apptao.highway.client.dispatch.RichDispatchAsync;
 import net.apptao.highway.client.event.HwyEventBus;
 import net.apptao.highway.client.event.HwyEventBusImpl;
+import net.customware.gwt.dispatch.client.DefaultExceptionHandler;
 import net.customware.gwt.dispatch.client.DispatchAsync;
+import net.customware.gwt.dispatch.client.ExceptionHandler;
+import net.customware.gwt.dispatch.client.appengine.AppEngineSecureSessionAccessor;
+import net.customware.gwt.dispatch.client.secure.CookieSecureSessionAccessor;
+import net.customware.gwt.dispatch.client.secure.SecureSessionAccessor;
 
 import com.google.gwt.inject.client.AbstractGinModule;
 
@@ -19,6 +24,8 @@ public class HwyGinModule extends AbstractGinModule {
 	protected void configure() {
 		bind(Highway.class).to(HighwayClientImpl.class);		
 		bind(HwyEventBus.class).to(HwyEventBusImpl.class);
+		bind(ExceptionHandler.class).to(DefaultExceptionHandler.class);
+		bind(SecureSessionAccessor.class).to(AppEngineSecureSessionAccessor.class);
 		bind(DispatchAsync.class).to(RichDispatchAsync.class);
 		bind(HwyDispatchAsync.class).to(HwyDispatchAsyncImpl.class);
 		bind(HwyClientCache.class).to(HwyClientCacheImpl.class);

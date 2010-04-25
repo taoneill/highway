@@ -15,6 +15,7 @@ import net.customware.gwt.dispatch.shared.secure.InvalidSessionException;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
+import com.google.inject.Inject;
 
 public class RichDispatchAsync extends AbstractDispatchAsync {
 
@@ -25,6 +26,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
     private final SecureSessionAccessor secureSessionAccessor;
 	private HwyClientCache cache;
 
+	@Inject
 	public RichDispatchAsync(ExceptionHandler exceptionHandler, 
 			SecureSessionAccessor secureSessionAccessor, HwyClientCache cache) {
 		super(exceptionHandler);
@@ -34,8 +36,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	
     public <A extends Action<R>, R extends Result> void execute( final A action, 
     		final AsyncCallback<R> callback ) {
-    	final boolean isCachedCommand = action instanceof HwyCommand<?> 
-    		&& action.getClass().getAnnotation(CachedCommand.class) != null; 
+    	final boolean isCachedCommand = action instanceof HwyCachedCommand<?>;
     	if(isCachedCommand){
 			HwyResult result = cache.get((HwyCommand<HwyResult>)action);
 			if(result != null){
@@ -63,7 +64,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	            	// cache the result if need be
 	            	if(isCachedCommand){
 	            		cache.put((HwyCommand<HwyResult>)action, (HwyResult) result, 
-	            				action.getClass().getAnnotation(CachedCommand.class).secondsUntilExpire());
+	            				((HwyCachedCommand)action).secondsUntilExpire());
 	            	}
 	            	RichDispatchAsync.this.onSuccess( action, (R) result, callback );
 	            	
