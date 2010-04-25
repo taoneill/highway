@@ -23,7 +23,7 @@ public class HighwayServletModule extends ServletModule {
     	install(new ServerDispatchModule(GuiceDispatch.class, GuiceLazyActionHandlerRegistry.class));
     	bind(SecureSessionValidator.class).to(AppEngineSecureSessionValidator.class);
     	bind(HwyCommandRightsValidator.class).to(HwyCommandRightsValidatorImpl.class);    	
-    	serve("/dispatch/*").with(HwyDispatchServlet.class);
+    	serve("/*").with(HwyDispatchServlet.class);
     	bind(ObjectifyFactory.class).in(Singleton.class);
     	bind(HwyDaoService.class).to(HwyDaoServiceImpl.class).in(Singleton.class);
     	bind(Highway.class).to(HighwayServerImpl.class);
