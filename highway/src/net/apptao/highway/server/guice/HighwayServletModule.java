@@ -11,18 +11,16 @@ import net.customware.gwt.dispatch.server.guice.GuiceLazyActionHandlerRegistry;
 import net.customware.gwt.dispatch.server.guice.ServerDispatchModule;
 import net.customware.gwt.dispatch.server.secure.SecureSessionValidator;
 
-import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
-import com.googlecode.objectify.ObjectifyFactory;
 
 public class HighwayServletModule extends ServletModule {
 
+	@Override
     protected void configureServlets() {
     	install(new ServerDispatchModule(GuiceDispatch.class, GuiceLazyActionHandlerRegistry.class));
     	bind(SecureSessionValidator.class).to(AppEngineSecureSessionValidator.class);
-    	bind(HwyCommandRightsValidator.class).to(HwyCommandRightsValidatorImpl.class);    	
-    	serve("/*").with(HwyDispatchServlet.class);
-    	bind(ObjectifyFactory.class).in(Singleton.class);
+    	bind(HwyCommandRightsValidator.class).to(HwyCommandRightsValidatorImpl.class);
+    	serveRegex("(.)*/dispatch/(.)*").with(HwyDispatchServlet.class);
     	bind(Highway.class).to(HighwayServerImpl.class);
     }
 }
