@@ -1,11 +1,9 @@
 package net.apptao.highway.server.dispatch;
 
-import java.lang.annotation.Annotation;
+import net.customware.gwt.dispatch.server.ActionHandlerRegistry;
+import net.customware.gwt.dispatch.shared.Action;
 
 import com.google.inject.Inject;
-
-import net.apptao.highway.shared.dispatch.HwyCommand;
-import net.customware.gwt.dispatch.server.ActionHandlerRegistry;
 
 public class HwyCommandRightsValidatorImpl implements HwyCommandRightsValidator {
 
@@ -15,9 +13,9 @@ public class HwyCommandRightsValidatorImpl implements HwyCommandRightsValidator 
 	public HwyCommandRightsValidatorImpl(ActionHandlerRegistry handlerRegistry) {
 		this.handlerRegistry = handlerRegistry;
 	}
-	
+
 	@Override
-	public boolean isUnsecured(HwyCommand<?> command) {
+	public boolean isUnsecured(Action<?> command) {
 		Unsecured annotation = handlerRegistry.findHandler(command).getClass().getAnnotation(Unsecured.class);
 		if(annotation != null){
 			return true;

@@ -5,8 +5,6 @@ import net.apptao.highway.shared.dispatch.HwyCommand;
 import net.apptao.highway.shared.dispatch.HwyResult;
 import net.customware.gwt.dispatch.client.AbstractDispatchAsync;
 import net.customware.gwt.dispatch.client.ExceptionHandler;
-import net.customware.gwt.dispatch.client.secure.SecureDispatchService;
-import net.customware.gwt.dispatch.client.secure.SecureDispatchServiceAsync;
 import net.customware.gwt.dispatch.client.secure.SecureSessionAccessor;
 import net.customware.gwt.dispatch.shared.Action;
 import net.customware.gwt.dispatch.shared.Result;
@@ -19,7 +17,7 @@ import com.google.inject.Inject;
 
 public class RichDispatchAsync extends AbstractDispatchAsync {
 
-	private static final SecureDispatchServiceAsync realService = GWT.create( SecureDispatchService.class );
+	private static final HwySecureDispatchServiceAsync realService = GWT.create( HwySecureDispatchService.class );
 	private static final String baseUrl = ((ServiceDefTarget)realService).getServiceEntryPoint() + "/";
 
 
@@ -54,7 +52,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	        
 	        String sessionId = secureSessionAccessor.getSessionId();
 	
-	        realService.execute( sessionId, action, new AsyncCallback<Result>() {
+	        realService.execute(action, sessionId, new AsyncCallback<Result>() {
 	            public void onFailure( Throwable caught ) {
 	            	RichDispatchAsync.this.onFailure( action, caught, callback );
 	            }
@@ -69,7 +67,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	            	RichDispatchAsync.this.onSuccess( action, (R) result, callback );
 	            	
 	            }
-	        } );
+	        });
 		}
     }
 
