@@ -5,14 +5,14 @@ import com.googlecode.objectify.Objectify;
 public interface Highway {
 
 	/**
-	 * Begin and new non-transactional data access operation.
-	 * @return A new instance of a non-transactional @see HwyDao, which directly extends @see Objectify.
+	 * Begin a new non-transactional datastore access operation.
+	 * @return A new instance of an @see Objectify object.
 	 */
 	public abstract Objectify dao();
 
 	/**
-	 * Begin and new transactional data access operation. 
-	 * @return A new instance of a transactional @see HwyDao, which directly extends @see Objectify.
+	 * Begin a new transactional datastore access operation by passing true. 
+	 * @return A new instance of an @see Objectify object.
 	 */
 	public abstract Objectify dao(boolean transactional);
 
