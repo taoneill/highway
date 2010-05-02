@@ -7,6 +7,7 @@ import net.customware.gwt.dispatch.client.AbstractDispatchAsync;
 import net.customware.gwt.dispatch.client.ExceptionHandler;
 import net.customware.gwt.dispatch.client.secure.SecureSessionAccessor;
 import net.customware.gwt.dispatch.shared.Action;
+import net.customware.gwt.dispatch.shared.ActionException;
 import net.customware.gwt.dispatch.shared.Result;
 import net.customware.gwt.dispatch.shared.secure.InvalidSessionException;
 
@@ -19,6 +20,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 
 	private static final HwySecureDispatchServiceAsync realService = GWT.create( HwySecureDispatchService.class );
 	private static final String baseUrl = ((ServiceDefTarget)realService).getServiceEntryPoint() + "/";
+	public static final int DEFAULT_MAX_RETRY = 3;
 
 
     private final SecureSessionAccessor secureSessionAccessor;
@@ -32,7 +34,11 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 		this.cache = cache;
 	}
 	
-    public <A extends Action<R>, R extends Result> void execute( final A action, 
+	public <A extends Action<R>, R extends Result> void execute( final A action, final AsyncCallback<R> callback ) {
+		this.execute(action, DEFAULT_MAX_RETRY, callback);
+	}
+	
+    private <A extends Action<R>, R extends Result> void execute( final A action, final int retriesLeft,  
     		final AsyncCallback<R> callback ) {
     	final boolean isCachedCommand = action instanceof HwyCachedCommand<?>;
     	if(isCachedCommand){
@@ -54,6 +60,16 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	
 	        realService.execute(action, sessionId, new AsyncCallback<Result>() {
 	            public void onFailure( Throwable caught ) {
+	            	if (!(caught instanceof ActionException) && retriesLeft > 0) {
+	            		// This failure is not normal and
+	            		// may be due to a bad connection
+	            		// (i.e. Google shut down the app, probably).
+	            		execute(action, retriesLeft - 1, callback);
+	            	} else {
+	            		// We've failed too many times or this is an exception 
+	            		// thrown by the action.
+	            		callback.onFailure(caught);
+	            	} 
 	            	RichDispatchAsync.this.onFailure( action, caught, callback );
 	            }
 	
@@ -65,7 +81,6 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	            				((HwyCachedCommand)action).secondsUntilExpire());
 	            	}
 	            	RichDispatchAsync.this.onSuccess( action, (R) result, callback );
-	            	
 	            }
 	        });
 		}
