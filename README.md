@@ -2,7 +2,7 @@
 
 Highway jump starts your GWT on AppEngine development experience. It provides a convenient helper that integrates with popular libraries [gwt-dispatch](http://code.google.com/p/gwt-dispatch/), [objectify](http://code.google.com/p/objectify-appengine/), [gin](http://code.google.com/p/google-gin/) and [guice](http://code.google.com/p/google-guice/).
 
-Highway give you a secure, sensible and productivity-enhancing architecture out-of-the-box. You get:
+Highway gives you a secure, sensible and productivity-enhancing architecture out-of-the-box. You get:
 
 - A secure-by-default dispatching system that uses the command pattern (based on an up-to-date snapshot of [gwt-dispatch](http://code.google.com/p/gwt-dispatch/)).
 - Pre-configured [guice-servlet](http://code.google.com/p/google-guice/wiki/Servlets) and [gin](http://code.google.com/p/google-gin/) modules that get you started quickly.

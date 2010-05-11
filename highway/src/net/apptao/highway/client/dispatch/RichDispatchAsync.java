@@ -41,7 +41,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
     private <A extends Action<R>, R extends Result> void execute( final A action, final int retriesLeft,  
     		final AsyncCallback<R> callback ) {
     	final boolean isCachedCommand = action instanceof HwyCachedCommand<?>;
-    	if(isCachedCommand){
+    	if(isCachedCommand) {
 			HwyResult result = cache.get((HwyCommand<HwyResult>)action);
 			if(result != null){
 				// command cache hit! return immediately 
@@ -70,7 +70,7 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
 	            		// thrown by the action.
 	            		callback.onFailure(caught);
 	            	} 
-	            	RichDispatchAsync.this.onFailure( action, caught, callback );
+	            	RichDispatchAsync.this.onFailure(action, caught, callback);
 	            }
 	
 	            @SuppressWarnings({"unchecked"})
@@ -92,6 +92,5 @@ public class RichDispatchAsync extends AbstractDispatchAsync {
         }
 
         super.onFailure( action, caught, callback );
-
     }
 }
