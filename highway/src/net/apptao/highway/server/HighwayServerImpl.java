@@ -1,24 +1,29 @@
 package net.apptao.highway.server;
 
+import net.apptao.highway.server.data.HwyDao;
+import net.apptao.highway.server.data.HwyDaoFactory;
+
 import com.google.inject.Inject;
-import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 
 public class HighwayServerImpl implements Highway {
 	
+	private HwyDaoFactory ofyFactory;
+
 	@Inject
-	public HighwayServerImpl(){
+	public HighwayServerImpl(HwyDaoFactory ofyFactory){
+		this.ofyFactory = ofyFactory;
 	}
 	
-	public Objectify dao()
+	public HwyDao dao()
 	{
-		return ObjectifyService.begin();
+		return (HwyDao)ofyFactory.begin();
 	}
 	
-	public Objectify dao(boolean transactional)
+	public HwyDao dao(boolean transactional)
 	{
 		if(transactional)
-			return ObjectifyService.beginTransaction();
+			return (HwyDao)ofyFactory.beginTransaction();
 		else
 			return dao();
 	}

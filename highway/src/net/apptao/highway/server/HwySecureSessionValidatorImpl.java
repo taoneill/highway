@@ -1,9 +1,5 @@
 package net.apptao.highway.server;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
 
